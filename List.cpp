@@ -7,7 +7,7 @@ List::List(){
 
 List::~List(){
 	this->reset();
-	while(this->next!=NULL){
+	while(this->current!=NULL){
 		Node * temp=this->next;
 		delete(this->current);
 		this->current=temp;
@@ -22,71 +22,82 @@ void List::reset(){
 
 void List::insert(int index, Planet * p){
 	Node * toAdd=new Node(*p);
+	int position=0;
 	this->reset();
-	for(int i=0; i<index; i++){
-		if(this->next==NULL){
-			tail->next=toAdd;
+	while(this->current!=NULL && position<index){
+		if(this->current->next==NULL){
+			Node * temp=this->tail;
+			this->tail->next=toAdd;
+			this->current=this->tail->next;
+			this->current->prev=temp;
 		}
-		else if(i==(index-1)){
+		else{
+		this->current=this->current->next;
+		else if(position==(index-1){
 			Node * temp=this->current;
+			Node * temp2=this->current->prev;
 			this->current=toAdd;
-			while(this->next!=NULL){
-					Node * temp=this->next;
-					this->next=this->current;	
-			}		
+			this->current->next=temp;
+			this->current->prev=temp2;
+			while(this->current->next!=NULL){
+				Node * temp =this->current->next;
+				Node * temp2=this->current->prev;
+				this->current->next=this->current;
+				this->current=temp;
+				this->current->prev=temp2;
+			}
 		}
-		this->current=this->next;			
+		position++;
+		}
+
 	}
-}
+
 
 Planet* List::read(int index){
 	this->reset();
-	for(int i=0; i<index: i++){
-		if(this->next!=NULL){
-			this->current=this->next;	
-			}
-		else return NULL;
+	int position=0
+	while(this->current!=NULL && position<index){
+		if(this->current->next==NULL){
+			return NULL;
+		}
+		this->current=this->current->next;
+		if(position==index-1){
+			return &(this->current->data);
+		}
+		position++;
 	}
-	return &(this->current->data);
-	}
+
+}
 
 bool List::remove(int index){
 	this->reset();
-	for(int i=0; i<index;i++){
-		if(this->next!=NULL){
-			this->current=this->next;
+	int position=0;
+	while(this->current!=NULL && position<index){
+		//		correct check?
+		if(this->current->next != NULL){
+			this->current=this->current->next;
 			}
-		if(index=index-1){
-			while(this->next!=NULL){
-				this->current=this->next;
+		if(position==index-1){
+			while(this->current->prev!=NULL){
+				Node * temp=this->current;
+				Node* temp2=this->current->prev;
+				this->current=this->current->prev;
+				this->current->next=temp;
+				this->current->prev=temp2;
 			}
 			return true;
+			}
 		}
+		return false;
 	}
-	return false;
-}
+
 
 unsigned List::size(){
 	int size=0;
+	this->reset();
 	while(this->current!=NULL){
 		size++;
-		this->current=this->next;
+		this->current=this->current->next;
 		}
 	return size;
 }
-		
-
-			
-				
-
-
-
-
-
-
-
-
-
-
-
-	

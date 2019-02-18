@@ -20,4 +20,18 @@ class Star{
         //you may add any additional methodas you may need.
 };
 
+
+class StarList{
+public:
+	List stars;
+	StarList();
+	~StarList();
+	long addPlanet();
+	bool removePlanet(long);
+	Planet * getPlanet(long);
+	void orbit();
+	void printStarInfo();
+	unsigned int getCurrentNumPlanets();
+}
+
 #endif
