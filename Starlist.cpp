@@ -2,12 +2,12 @@
 #include "Star.h"
 
 StarList::StarList(){
-	this->stars=new List();
+	//not sure what goes here
 }
 
 StarList::~StarList(){
 	stars->reset();
-	while(stars->current->next!=NULL){
+	while(->current->next!=NULL){
 		Node * temp=stars->current->next;
 		delete stars->current->next;
 		stars->current=temp;
@@ -54,7 +54,7 @@ void StarList::orbit(){
 	stars->reset();
 	while(stars->current!=NULL){
 		stars->current->data->orbit();
-		stars>current=stars->current->next;
+		stars->current=stars->current->next;
 	}
 }
 
@@ -70,4 +70,3 @@ void StarList:: printStarInfo(){
 unsigned int StarList:: getCurrentNumPlanets(){
 	return stars->size();
 }
-};

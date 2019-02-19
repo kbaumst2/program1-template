@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include "List.h"
 
 List::List(){
 	this->head=NULL;
@@ -24,28 +25,36 @@ void List::insert(int index, Planet * p){
 	Node * toAdd=new Node(*p);
 	int position=0;
 	this->reset();
-	while(this->current!=NULL && position<index){
+	while(this->current!=NULL && position<=index){
 		if(this->current->next==NULL){
 			Node * temp=this->tail;
 			this->tail->next=toAdd;
 			this->current=this->tail->next;
 			this->current->prev=temp;
+			this->tail=this->current;
 		}
 		else{
 		this->current=this->current->next;
-		else if(position==(index-1){
-			Node * temp=this->current;
-			Node * temp2=this->current->prev;
-			this->current=toAdd;
-			this->current->next=temp;
-			this->current->prev=temp2;
-			while(this->current->next!=NULL){
-				Node * temp =this->current->next;
+		  if(position==(index){
+				if(this->current=this->head){
+					Node * temp=this->current;
+					this->head=toAdd;
+					this->current=this->head;
+					this->current->next=temp;
+					this->current->prev=NULL;
+					temp->prev=this->current;
+				}
+			else{
+				Node * temp=this->current;
 				Node * temp2=this->current->prev;
-				this->current->next=this->current;
-				this->current=temp;
+				this->current=toAdd;
+				this->current->next=temp;
 				this->current->prev=temp2;
-			}
+				temp->prev=this->current;
+				temp2->next=this->current;
+				}
+			break;
+
 		}
 		position++;
 		}
@@ -56,38 +65,48 @@ void List::insert(int index, Planet * p){
 Planet* List::read(int index){
 	this->reset();
 	int position=0
-	while(this->current!=NULL && position<index){
+	while(this->current!=NULL && position<=index){
 		if(this->current->next==NULL){
 			return NULL;
 		}
 		this->current=this->current->next;
-		if(position==index-1){
+		if(position==index){
 			return &(this->current->data);
 		}
 		position++;
 	}
 
 }
-
+//chekc for special cases tail or head
 bool List::remove(int index){
 	this->reset();
 	int position=0;
-	while(this->current!=NULL && position<index){
-		//		correct check?
-		if(this->current->next != NULL){
-			this->current=this->current->next;
+	while(this->current!=NULL && position<=index){
+		Node * curr=this->current;
+		if(position==index){
+				if(this->current==this->head){
+					this->head=this->current->next;
+					this->head->prev=NULL;
+					delete this->current;
+				}
+				else if(this->current==this->tail){
+					this->tail=this->current->prev;
+					this->tail->next=NULL;
+					delete this->current;
+				}
+				else{
+				this->current->prev->next=this->current->next;
+				this->current->next->prev=this->current->prev;
+				delete this->current;
+				this->current=NULL;
 			}
-		if(position==index-1){
-			while(this->current->prev!=NULL){
-				Node * temp=this->current;
-				Node* temp2=this->current->prev;
-				this->current=this->current->prev;
-				this->current->next=temp;
-				this->current->prev=temp2;
-			}
+				//OR this->reset();
 			return true;
 			}
+			position++;
+			this->current=curr->next;
 		}
+
 		return false;
 	}
 

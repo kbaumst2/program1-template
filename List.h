@@ -1,17 +1,18 @@
 #ifndef LIST_H
-#define LIST_h
+#define LIST_H
+#include <iostream>
 
 class Node{
 public:
 	Planet data;
 	Node * next, * prev;
-	Node(Planet p) {data=p; next=NULL;}	
+	Node(Planet p) {data=p; next=NULL;}
 	};
 
 class List{
 private:
 	Node *head, *tail, *current;
-public: 
+public:
 	List();
 	~List();
 	void insert(int index, Planet * p);
@@ -19,7 +20,7 @@ public:
 	bool remove(int index);
 	unsigned size();
 	void reset();
-	
+
 };
 
 
