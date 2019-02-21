@@ -1,6 +1,6 @@
 #include "Planet.h"
 #include "List.h"
-#incude "Vector.h"
+#include "Vector.h"
 #include "Star.h"
 #include <cstdlib>
 #include <iostream>
@@ -15,29 +15,29 @@ Starvector::~Starvector(){
 
 long Starvector::addPlanet(){
 	Planet * new_planet = new Planet();
-	planets.insert(planets.size(), new_planet);
-	return planets[planets.size() - 1]->getID();
+	planets->insert(planets->size(), new_planet);
+	return planets->read(planets->size() - 1)->getID();
 }
 
 bool Starvector::removePlanet(int id){
-	return planets.remove(id);
+	return planets->remove(id);
 }
 
 Planet * Starvector::getPlanet(int id){
-	return planets.read(id);
+	return planets->read(id);
 }
 
 void Starvector::orbit(){
-	for(int i = 0; i < planets.size(); i++){
-		planets[i]->orbit();
+	for(unsigned int i = 0; i < planets->size(); i++){
+		planets->read(i)->orbit();
 	}
 }
 
 void Starvector::printStarInfo(){
 	std::cout << "The star has " << this->getCurrentNumPlanets() << " planets." << std::endl;
 	std::cout << "Planets:" << std::endl;
-	for(int i = 0; i < planets.size(); i++){
-		std::cout << "Planet " << this->planets[i]->getType() << this->planets[i]->getID() << " is " <<this->planets[i]->getDistance() << " million miles away at position " << this->planets[i]->getPos() << " around the star." << std::endl;
+	for(int i = 0; i < planets->size(); i++){
+		std::cout << "Planet " << this->planets->read(i)->getType() << this->planets->read(i)->getID() << " is " <<this->planets->read(i)->getDistance() << " million miles away at position " << this->planets->read(i)->getPos() << " around the star." << std::endl;
       	}
 }
 

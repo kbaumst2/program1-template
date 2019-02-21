@@ -9,7 +9,7 @@ public:
 	Planet ** vector;
 	Vector();
 	~Vector();
-	int insert(int index, Planet * p);
+	void insert(int index, Planet * p);
 	bool remove(int index);
 	Planet * read(int index);
 	unsigned int size(){ return sizeV; };

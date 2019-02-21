@@ -22,7 +22,7 @@ public:
 
 class Starvector{
 public:
-	Vector planets;
+	Vector * planets;
 	Starvector();
 	~Starvector();
 	long addPlanet();
@@ -30,7 +30,7 @@ public:
 	Planet * getPlanet(int id);
 	void orbit();
 	void printStarInfo();
-	unsigned int getCurrentNumPlanets(){ return planets.size(); };
+	unsigned int getCurrentNumPlanets(){ return planets->size(); };
 };
 
 

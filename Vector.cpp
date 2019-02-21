@@ -10,28 +10,27 @@ Vector::Vector(){
 }
 
 Vector::~Vector(){
-	for(int i = 0; i < size; i++) delete vector[i];
+	for(unsigned int i = 0; i < sizeV; i++) delete vector[i];
 	delete [] vector;
 }
 
 void Vector::insert(int index, Planet * p){
 	if(vector == NULL){
+		vector = new Planet*[index+1];
+		vector[index] = p;
 		sizeV = index+1;
-		vector = new Planet*[sizeV];
-		Planet * new_planet = new Planet(rand() % 3001);
-		vector[index] = new_planet;
 		return;
 	}
 	if(index >= sizeV){
 		Planet ** temp = new Planet*[index+1];
-		for (int i = 0; i < sizeV; i++){
+		for (unsigned int i = 0; i < sizeV; i++){
 			temp[i] = vector[i];
 		}
-		delete vector[];
-		Planet * new_planet = new Planet(rand() % 3001);
-		vector[index] = new_planet;
+		delete[] vector;
+		vector = temp;
+		vector[index] = p;
 		for (int i = sizeV; i < index; i++){
-			vector[i] = N;
+			vector[i] = NULL;
 		}
 		sizeV = index+1;
 		return;
@@ -40,26 +39,26 @@ void Vector::insert(int index, Planet * p){
 	for (int i = 0; i < index; i++){
 		temp[i] = vector[i];
 	}
-	for (int j = index; j < sizeV; j++){
+	for (unsigned int j = index; j < sizeV; j++){
 		temp[j+1] = vector[j];
 	}
 	delete[] vector;
 	vector = temp;
-	Planet * new_planet = new Planet(rand() % 3001);
-	vector[index] = new_planet;
+	vector[index] = p;
 	sizeV++;
 	return;
 }
 
 bool Vector::remove(int index){
-	if(planets == NULL || getPlanet(planet_id) == NULL){
+	if(sizeV == 0){
+// || this->read(index) == NULL
 		return false;
 	}
 	Planet ** temp = new Planet*[sizeV-1];
 	for (int i = 0; i < index; i++){
 		temp[i] = vector[i];
 	}
-	for (int j = index + 1; j < sizeV; j++){
+	for (unsigned int j = index + 1; j < sizeV; j++){
 		temp[j-1] = vector[j];
 	}
 	delete vector[index];
