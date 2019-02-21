@@ -4,7 +4,7 @@
 #include "Planet.h"
 
 class Vector{
-	unsigned int size;
+	unsigned int sizeV;
 public:
 	Planet ** vector;
 	Vector();
@@ -12,7 +12,7 @@ public:
 	int insert(int index, Planet * p);
 	bool remove(int index);
 	Planet * read(int index);
-	unsigned int size();
+	unsigned int size(){ return sizeV; };
 };
 
 #endif
