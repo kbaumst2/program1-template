@@ -1,7 +1,8 @@
 #include <iostream>
 #include <stdlib.h>
-#include "List.h"
 #include "Planet.h"
+#include "List.h"
+#include "Star.h"
 
 List::List(){
 	this->head=NULL;

@@ -1,37 +1,38 @@
+
 #ifndef STAR_CW
 #define STAR_CW
-
 #include "Planet.h"
-
-class Star{
-	private:
-        int current_planets;
-	public:
-        Planet ** planets;
-        Star();
-        ~Star();
-        long int addPlanet();
-		bool removePlanet(int);
-		Planet * getPlanet(int);
-//      Planet getFurthest();
-        void orbit();
-        void printStarInfo();
-        int getCurrentNumPlanets(){ return current_planets; };
-        //you may add any additional methodas you may need.
-};
+#include "List.h"
+#include "Vector.h"
 
 
-class StarList{
+class Starlist{
 public:
-	List stars;
-	StarList();
-	~StarList();
+	List * stars;
+	Starlist();
+	~Starlist();
 	long addPlanet();
 	bool removePlanet(long);
 	Planet * getPlanet(long);
 	void orbit();
 	void printStarInfo();
 	unsigned int getCurrentNumPlanets();
-}
+};
+
+
+class Starvector{
+public:
+	Vector planets;
+	Starvector();
+	~Starvector();
+	long addPlanet();
+	bool removePlanet(int id);
+	Planet * getPlanet(int id);
+	void orbit();
+	void printStarInfo();
+	unsigned int getCurrentNumPlanets(){ return planets.size(); };
+};
+
+
 
 #endif

@@ -1,8 +1,8 @@
-#ifndef LIST_H
-#define LIST_H
-#include <iostream>
+#ifndef LIST_K
+#define LIST_K
+
 #include "Planet.h"
-#include "Star.h"
+#include <iostream>
 
 class Node{
 public:
@@ -25,9 +25,6 @@ public:
 	void next();
 	void addAtHead(Planet * p);
 	void addAtTail(Planet *p);
-
-
-
 };
 
 
