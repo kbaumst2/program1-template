@@ -4,15 +4,15 @@
 #include "Planet.h"
 
 class Vector{
-	unsigned size;
+	unsigned int size;
 public:
 	Planet ** vector;
-	Vector::Vector();
-	Vector::~Vector();
-	int Vector::insert(int index, Planet * p);
-	bool Vector::remove(int index);
-	Planet * Vector::read(int index);
-	unsigned Vector::size();
+	Vector();
+	~Vector();
+	int insert(int index, Planet * p);
+	bool remove(int index);
+	Planet * read(int index);
+	unsigned int size();
 };
 
 #endif
